@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/solar/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
-    <script src="assets/main.js"></script>
+    <script   src="https://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js">   </script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
 </head>
-
 <body>
     <div class="main-container">
         <div class="row">
@@ -33,7 +34,7 @@
                             <fieldset>
                                 <div class="form-group">
                                     <label>Train Name</label>
-                                    <input type="email" class="form-control" id="trainName" placeholder="Enter the train name">
+                                    <input class="form-control" id="trainName" placeholder="Enter the train name">
                                 </div>
                                 <div class="form-group">
                                     <label>Destination</label>
@@ -50,13 +51,12 @@
                                     <small id="Help" class="form-text">Min</small>
                                 </div>
                             </fieldset>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
                             </fieldset>
                         </form>
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-7">
                 <table class="table table-hover">
                     <thead>
@@ -97,6 +97,19 @@
         </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAzafKrWtGRtjqkw5bJAMvfI88uL4ks6Sg",
+            authDomain: "train-schedule-f3fbb.firebaseapp.com",
+            databaseURL: "https://train-schedule-f3fbb.firebaseio.com",
+            projectId: "train-schedule-f3fbb",
+            storageBucket: "train-schedule-f3fbb.appspot.com",
+            messagingSenderId: "604209644581"
+        };
+        firebase.initializeApp(config);
+    </script>
 </body>
 
 </html>
