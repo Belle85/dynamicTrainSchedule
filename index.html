@@ -38,16 +38,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Destination</label>
-                                    <input type="destination" class="form-control" id="Destination" placeholder="Enter the destination">
+                                    <input class="form-control" id="destination" placeholder="Enter the destination">
                                 </div>
                                 <div class="form-group">
                                     <label>First Train Time</label>
-                                    <input type="destination" class="form-control" id="firstTrainTime" placeholder="Enter the train time">
+                                    <input class="form-control" id="firstTrainTime" placeholder="Enter the train time">
                                     <small id="Help" class="form-text">HH:mm - Military Time</small>
                                 </div>
                                 <div class="form-group">
                                     <label>Frequency</label>
-                                    <input type="destination" class="form-control" id="frequency" placeholder="Enter the frequency">
+                                    <input class="form-control" id="frequency" placeholder="Enter the frequency">
                                     <small id="Help" class="form-text">Min</small>
                                 </div>
                             </fieldset>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="col-lg-7">
-                <table class="table table-hover">
+                <table id="train-table" class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Train Name</th>
@@ -69,7 +69,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <!-- <tr>
                             <th scope="row">Active</th>
                             <td>Column content</td>
                             <td>Column content</td>
@@ -89,27 +89,12 @@
                             <td>Column content</td>
                             <td>Column content</td>
                             <td>Column content</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
             <div class="col-sm-1"></div>
         </div>
     </div>
-
-    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAzafKrWtGRtjqkw5bJAMvfI88uL4ks6Sg",
-            authDomain: "train-schedule-f3fbb.firebaseapp.com",
-            databaseURL: "https://train-schedule-f3fbb.firebaseio.com",
-            projectId: "train-schedule-f3fbb",
-            storageBucket: "train-schedule-f3fbb.appspot.com",
-            messagingSenderId: "604209644581"
-        };
-        firebase.initializeApp(config);
-    </script>
 </body>
-
 </html>
