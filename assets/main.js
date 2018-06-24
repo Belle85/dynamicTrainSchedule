@@ -14,48 +14,51 @@ $(document).ready(function () {
 
   firebase.initializeApp(config);
 
-  var database = firebase.database()
+  var database = firebase.database();
 
   // 2-Declare initial variables.
   var trainName = "";
   var destination = "";
   var trainTime = "";
-  // var timeFormat = "";
-  // var formatedTrainTime = moment(trainTime, timeFormat);
+  var timeFormat = "mm";
+  var formatedTrainTime = moment(trainTime).format(timeFormat);
   var frequency = "";
-  // var formatedFrequency = 
+  var frequencyFormat = "mm";
+  var formatedFrequency = moment(frequency).format(frequencyFormat);
 
   console.log(trainTime);
 
   // 3-Button for adding the train.
   $("#submitBtn").on("click", function (event) {
+    console.log("submit button");
     event.preventDefault();
-
+    
     // Grabs user input
     trainName = $("#trainName").val().trim();
     destination = $("#destination").val().trim();
-    formatedTrainTime = $("#firstTrainTime").val().trim(), "HH:mm".format("LTS");
+    formatedTrainTime = $("#firstTrainTime").val().trim(), //"HH:mm".format("LTS");
     frequency = $("#frequency").val().trim();
-    console.log = trainName;
-    console.log = destination;
-    console.log = trainTime;
-    console.log = frequency;
+    console.log(trainName);
+    console.log(destination);
+    console.log(trainTime);
+    console.log(frequency);
 
   // Creates a local "temporary" object for holding train data.
   var newTrain = {
-    trainName: TheTrainName,
-    destination: TheDestination,
-    formatedTrainTime: correctTrainTime,
-    formatedFrequency: correctfrequency
+    TheTrainName: trainName,
+    TheDestination:destination,
+    correctedTrainTime:formatedTrainTime,
+    correctedFrequency:formatedFrequency
+  
   };
-
+  console.log(newTrain);
   // Uploads employee data to the database.
   database.ref().push(newTrain);
 
-  console.log(trainName);
-  console.log(destination);
-  console.log(formatedTrainTime);
-  console.log(frequency);
+  // console.log(trainName);
+  // console.log(destination);
+  // console.log(formatedTrainTime);
+  // console.log(frequency);
 
   // Alert.
   alert("Train sucessfully added.");
@@ -68,24 +71,21 @@ $(document).ready(function () {
   });
   
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
-
-    console.log(childSnapshot.val());
   
     // Store everything into a variable.
-    var TheTrainName = childSnapshot.val().trainName;
-    var TheDestination = childSnapshot.val().destination;
-    var correctTrainTime = childSnapshot.val().formatedTrainTime;
-    var correctfrequency =  childSnapshot.val().formatedFrequency;
+    var TheTrainName = childSnapshot.val().TheTrainName;
+    var TheDestination = childSnapshot.val().TheDestination;
+    var correctedTrainTime = childSnapshot.val().correctedTrainTime;
+    var correctedfrequency =  childSnapshot.val().correcedtfrequency;
   
-    // Employee Info
-    console.log(TheTrainName);
-    console.log(TheDestination);
-    console.log(correctTrainTime);
-    console.log(correctfrequency);
+    // console.log(childSnapshot.val());
+    // console.log(TheDestination);
+    // console.log(correctTrainTime);
+    // console.log(correctfrequency);
 
     // Add each train's data into the table
-  $("#train-table > tbody").append("<tr><th>" + trainName + "</th><td>" + destination + "</td><td>" +
-  formatedTrainTime + "</td><td>" + formatedFrequency + "</td>");
+  $("#train-table > tbody").append("<tr><th>" + TheTrainName + "</th><td>" + TheDestination + "</td><td>" +
+  correctedTrainTime + "</td><td>" + correctedfrequency + "</td>");
 });
 
 
