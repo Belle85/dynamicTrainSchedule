@@ -1,0 +1,26 @@
+.jumbotron{
+    background: url(../assets/images/trainRailsBkg.jpg);
+    width: 100%;
+    margin: auto;
+    color:black;
+}
+small{
+    color: darkgray;
+}
+.blockquote{
+    color:teal;
+    margin-top:15px;
+    background: white;
+    padding: 10px;
+    opacity: 0.6;
+}
+
+.table,
+.card{
+    margin-top: 60px;
+}
+thead{
+    margin-top:60px;
+    background:#b58900;
+    color:black;
+}
