@@ -20,11 +20,12 @@ $(document).ready(function () {
   var trainName = "";
   var destination = "";
   var trainTime = "";
-  var timeFormat = "mm";
-  var formatedTrainTime = moment(trainTime).format(timeFormat);
+  // var timeFormat = "mm";
+  // var formatedTrainTime = moment(trainTime).format(timeFormat);
   var frequency = "";
-  var frequencyFormat = "mm";
-  var formatedFrequency = moment(frequency).format(frequencyFormat);
+  // var frequencyFormat = "mm";
+  // var formatedFrequency = moment(frequency).format(frequencyFormat);
+  // var minAway = "";
 
   console.log(trainTime);
 
@@ -36,7 +37,7 @@ $(document).ready(function () {
     // Grabs user input
     trainName = $("#trainName").val().trim();
     destination = $("#destination").val().trim();
-    formatedTrainTime = $("#firstTrainTime").val().trim(), //"HH:mm".format("LTS");
+    trainTime = $("#firstTrainTime").val().trim(), //"HH:mm".format("LTS");
     frequency = $("#frequency").val().trim();
     console.log(trainName);
     console.log(destination);
@@ -46,9 +47,9 @@ $(document).ready(function () {
   // Creates a local "temporary" object for holding train data.
   var newTrain = {
     TheTrainName: trainName,
-    TheDestination:destination,
-    correctedTrainTime:formatedTrainTime,
-    correctedFrequency:formatedFrequency
+    TheDestination: destination,
+    TheTrainTime: trainTime,
+    TheFrequency: frequency
   
   };
   console.log(newTrain);
@@ -75,17 +76,30 @@ $(document).ready(function () {
     // Store everything into a variable.
     var TheTrainName = childSnapshot.val().TheTrainName;
     var TheDestination = childSnapshot.val().TheDestination;
-    var correctedTrainTime = childSnapshot.val().correctedTrainTime;
-    var correctedfrequency =  childSnapshot.val().correcedtfrequency;
+    var TheTrainTime = childSnapshot.val().TheTrainTime;
+    var TheFrequency =  childSnapshot.val().TheFrequency;
   
     // console.log(childSnapshot.val());
     // console.log(TheDestination);
     // console.log(correctTrainTime);
     // console.log(correctfrequency);
 
+     // moment formula 
+ var trainMoment = moment(trainTime, 'HH:mm');
+ var nowMoment = moment(); 
+
+ console.log(nowMoment);
+
+ var minutesSinceFirstArrival = nowMoment.diff(trainMoment, 'minutes');
+ var minutesSinceLastArrival = minutesSinceFirstArrival % frequency;
+ var minutesAway = frequency - minutesSinceLastArrival;
+
+ var nextArrival = nowMoment.add(minutesAway, 'minutes');
+ var formatNextArrival = nextArrival.format("HH:mm");
+
     // Add each train's data into the table
   $("#train-table > tbody").append("<tr><th>" + TheTrainName + "</th><td>" + TheDestination + "</td><td>" +
-  correctedTrainTime + "</td><td>" + correctedfrequency + "</td>");
+  TheTrainTime + "</td><td>" + TheFrequency + "</td><td>" + formatNextArrival + "</td>");
 });
 
 
